@@ -1,0 +1,121 @@
+.homepage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-block: 20px;
+    text-align: center;
+}
+.set1, .set2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.encokokunanlar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    /* background-color: #f7f7f7; */
+    width: 100%;
+    padding: 20px;
+}
+
+.encokokunanlar img{
+    height: 270px;
+    width: 180px;
+    border-radius: 5px;
+}
+.favoriler{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    background-color: #f7f7f7;
+    width: 100%;
+    padding: 20px;
+}
+.favoriler img{
+    height: 270px;
+    width: 180px;
+    border-radius: 5px;
+}
+.encokokunanlarp{
+    font-size: 30px;
+    font-weight: 700;
+}
+.books{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    /* flex-wrap: wrap; */
+}
+.book{
+    margin-bottom: 20px;
+}
+
+.rlicon{
+    font-size: x-large;
+    cursor: pointer;
+    margin-inline: 20px;
+    color: black;
+}
+.rlicon.active{
+    color: gray;
+}
+
+@media screen and (max-width: 955px){
+    .encokokunanlar img, .favoriler img{
+        height: 210px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 730px){
+    .encokokunanlar img, .favoriler img{
+        height: 180px;
+        width: auto;
+    }
+    .encokokunanlarp{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 630px){
+    .encokokunanlar img, .favoriler img{
+        height: 120px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 435px){
+    .encokokunanlar img, .favoriler img{
+        height: 100px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 370px){
+    .encokokunanlar img, .favoriler img{
+        height: 80px;
+        width: auto;
+    }
+    .encokokunanlarp{
+        font-size: 15px;
+    }
+    .rlicon{
+        font-size: large;
+    }
+}
+@media screen and (max-width: 320px){
+    .encokokunanlar img, .favoriler img{
+        height: 70px;
+        width: auto;
+    }
+}

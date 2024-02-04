@@ -1,0 +1,101 @@
+.ayarlarhero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 200px);
+}
+.ahbaslik{
+    font-weight: 800;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.ahun, .ahpw, .ahmail, .ahbd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid gray;
+}
+
+.ahalt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ahleft{
+    padding-block: 5px;
+    font-weight: 700;
+    color: brown;
+}
+.ahright{
+    width: 400px;
+    padding-block: 5px ;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Gizlenen kısmı üç nokta ile göstermek için */
+    word-wrap: break-word;
+}
+
+.ahicon{
+    cursor: pointer;
+    font-size: 20px;
+    width: 50px;
+}
+
+.ahicon:hover{
+    color: brown;
+}
+.ahicondif{
+    font-size: 20px;
+    color: transparent;
+    width: 50px;
+}
+.ahkaydet{
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: #01b2b2;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.ahkaydet:hover{
+    background-color: #02cfcf;
+}
+.ahkaydetedit{
+    width: 50px;
+    cursor: pointer;
+}
+.ahrightinput{
+    padding-inline: 2px;
+    width: 90%;
+    height: 30px;
+    border: 1px solid gray;
+    font-size: medium;
+}
+.ahrightinputsec{
+    border: 1px solid transparent;
+    padding-inline: 2px;
+    width: 90%;
+    height: 30px;
+    font-size: medium;
+}
+.ahrightinputsec:focus{
+    border: 1px solid transparent;
+    outline: none;
+}
+
+@media screen and (max-width: 500px) {
+    .ahright{
+        width: 210px;
+        font-size: small;
+    }
+    .ahrightinput, .ahrightinputsec{
+        font-size: small;
+    }
+    .ahbaslik{
+        font-size: 25px;
+    }
+}

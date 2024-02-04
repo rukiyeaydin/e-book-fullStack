@@ -1,0 +1,68 @@
+.yazicerik{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.yazbaslik{
+    text-align: center;
+}
+.yazicerik h2{
+    margin-block: 20px;
+}
+
+.yazicerikbtn{
+    padding: 5px 20px;
+    border: none;
+    background-color: #1495a9;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    margin-block: 10px 30px;
+}
+.yazicerikbtn:hover{
+    background-color: #30acbf;
+}
+
+.quillm{
+    height: 70vh;
+    margin-bottom: 8vh;
+    width: 90%;
+}
+.quill{
+    height: 70vh;
+}
+
+.yazicerikbb{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 90%;
+}
+.yazicerikinput{
+    padding: 5px 10px;
+    resize: none;
+    height: 35px;
+    border: 1px solid #c2c2c2;
+    font-size: medium;
+    border-radius: 5px;
+}
+.yazicerikinput:focus{
+    outline: 1px solid #45c7db;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 450px) {
+    .quillm{
+        margin-bottom: 8vh;
+    }
+}
+@media screen and (max-width: 390px) {
+    .quillm{
+        margin-bottom: 12vh;
+    }
+}

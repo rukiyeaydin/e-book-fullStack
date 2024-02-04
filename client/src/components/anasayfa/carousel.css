@@ -1,0 +1,31 @@
+.carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.carousel img{
+    border-radius: 10px;
+    max-width: 96%;
+    height: auto;
+    margin-block: 20px;
+    border-radius: 10px;
+    border: 1px solid #b6b6b6;
+}
+.discs{
+    display: flex;
+}
+.discs button{
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.discs button:hover{
+    background-color: #545454;
+}
+.disc1.active, .disc2.active, .disc3.active, .disc4.active, .disc5.active, .disc6.active {
+    background-color: #000000;
+}

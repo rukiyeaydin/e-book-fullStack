@@ -1,0 +1,23 @@
+.signuphero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 20px;
+    height: 70vh;
+}
+.aramizakatil{
+    color: black;
+    margin-bottom: 20px;
+}
+.shfile{
+    width: 300px;
+}
+.shfilep{
+    font-weight: 700;
+}
+@media screen and (max-width: 700px) {
+    .shfile{
+        width: 250px;
+    }
+}

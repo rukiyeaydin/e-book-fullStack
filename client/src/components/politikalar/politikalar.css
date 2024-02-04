@@ -1,0 +1,38 @@
+.politikalar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.politikalar ul {
+    list-style: none;
+    display: flex;
+}
+.politikalar ul li {
+    margin: 20px 10px;
+    font-weight: 600;
+    font-size: large;
+    cursor: pointer;
+}
+.politikaIcerik{
+    width: 60%;
+    margin-block: 50px;
+}
+.politikalar h2{
+    color: #01b2b2;
+}
+.politikalink{
+    color: black;
+    text-decoration: none;
+}
+.politikaAktif{
+    color: #01b2b2;
+    text-decoration: none;
+    border-bottom: 3px solid #01b2b2;
+}
+
+@media screen and (max-width: 850px) {
+    .politikaIcerik{
+        width: 90%;
+    }
+}

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+.loginnavbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    width: 100%;
+    height: 10vh;
+    color: white;
+}
+.loginnavbar img{
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+.lnp{
+    font-size: xx-large;
+    font-family: 'Girassol', serif;
+}
+.loginhero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 200px);
+}
+.lhimg{
+    margin-right: 20px;
+    width: auto;
+    height: 200px;
+    border-radius: 5px;
+}
+.lginputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.lginputs input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(174, 174, 174);
+    width: 300px;
+}
+.lginputs input:focus{
+    outline: none;
+}
+.lhi1{
+    margin-bottom: 15px;
+}
+.lhbuton{
+    background-color: #2222fc;
+    border: none;
+    color: white;
+    margin-block: 20px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.lhbuton:hover{
+    background-color: #1777fe;
+}
+.lhhy{
+    font-weight: 700;
+    color: gray;
+    font-size: 15px;
+}
+.lhhy a{
+    text-decoration: none;
+    color: #e83737
+}
+.lhhy a:hover{
+    border-bottom: 2px solid #e83737;
+}
+
+@media screen and (max-width: 700px) {
+    .loginhero{
+        flex-direction: column;
+    }
+    .lhimg{
+        margin-right: 0px;
+        margin-bottom: 20px;
+        width: auto;
+    }
+}
+@media screen and (max-width: 700px) {
+    .lhimg{
+        height: auto;
+        width: 250px;
+    }
+    .lginputs input{
+        width: 250px;
+    }
+}

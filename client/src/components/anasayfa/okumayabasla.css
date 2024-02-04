@@ -1,0 +1,82 @@
+.okumayabasla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    text-align: center;
+    width: 100%;
+    height: 450px;
+    background-image: url("../../images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px 0px;
+    margin-bottom: 110px;
+}
+.okumayabaslalink{
+    color: white;
+    text-decoration: none;
+}
+.okumayabaslap{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+.concat{
+    height: 500px;
+    width: auto;
+    position: absolute;
+    margin-top: 80px;
+    z-index: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .okumayabasla {
+        height: 330px;
+    }
+    .concat{
+        height: 300px;
+        width: auto;
+        margin-top: 100px;
+    }
+    .okumayabasla button{
+        font-size: medium;
+    }
+    .okumayabaslap{
+        font-size: 20px;
+    }
+    .okumayabaslaptwo{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .okumayabasla {
+        height: 250px;
+    }
+    .okumayabasla button{
+        font-size: small;
+    }
+    .concat{
+        height: 200px;
+        width: auto;
+        margin-top: 100px;
+    }
+    .okumayabaslap{
+        font-size: 15px;
+    }
+    .okumayabaslaptwo{
+        font-size: 10px;
+    }
+}
+@media screen and (max-width:380px) {
+    .okumayabasla {
+        height: 250px;
+    }
+    .okumayabasla button{
+        font-size: small;
+    }
+    .concat{
+        height: 200px;
+        width: auto;
+        margin-top: 100px;
+    }
+}

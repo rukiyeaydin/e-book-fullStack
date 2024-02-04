@@ -1,0 +1,72 @@
+.kitapinfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 78vh;
+}
+
+.kitapinfoinc{
+    display: flex;
+    justify-content: center;
+    margin-block: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.kitapinfoleft{
+    margin-right: 30px;
+}
+
+.kitapinfoleft img{
+    height: 200px;
+    width: auto;
+}
+
+.kitapinfobuton{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-block: 30px;
+    background-color: #1cb1c8;
+}
+.kitapinfolink{
+    text-decoration: none;
+    color: white;
+}
+.kitapinfoshortdesc{
+    width: 500px;
+}
+.kitapinfolinks{
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid #bebebe;
+}
+
+.infoistatistik{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.info-count{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .kitapinfoinc{
+        flex-direction: column;
+        width: 90%;
+        font-size: 15px;
+    }
+    .kitapinfoleft{
+        margin-right: 0px;
+    }
+    .kitapinfoleft img{
+        margin-bottom: 20px;
+    }
+    .kitapinfoshortdesc{
+        width: auto;
+    }
+}

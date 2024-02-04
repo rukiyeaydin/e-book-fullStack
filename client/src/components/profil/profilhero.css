@@ -1,0 +1,304 @@
+.profilhero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.phust{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f7f7f7;
+    width: 100%;
+}
+.phustisim{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.phaurora{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.phusername{
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.phistatistik{
+    display: flex;
+}
+.phwork{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-right: 20px;
+}
+.phtakipci{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.phorta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #52b795;
+    width: 100%;
+}
+
+.kitaplarLink, .takipcilerLink, .takipedilenlerLink{
+    color: white;
+    text-decoration: none;
+    padding: 10px 0px;
+    border-bottom: 5px solid transparent;
+}
+.kitaplarLink, .takipcilerLink{
+    margin-right: 20px;
+}
+.kitaplarLink.active, .takipcilerLink.active, .takipedilenlerLink.active{
+    border-bottom: 5px solid rgb(255, 108, 55);
+}
+.phaltfull{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phalt{
+    margin-block: 30px;
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.phaltsec{
+    margin-block: 30px;
+    padding: 20px;
+    width: 270px;
+}
+
+.phkitap{
+    display: flex;
+    margin-block: 20px;
+}
+.phkitap img{
+    height: 250px;
+    width: 155px;
+    margin-right: 10px;
+}
+.phbaslik{
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+}
+.phbasliklink{
+    text-decoration: none;
+    color: black;
+}
+.phsag{
+    width: 400px;
+    max-height: 250px;
+    overflow: hidden;
+}
+.phtext {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Kaç satıra kadar göstermek istediğimi burada belirttim */
+    -webkit-box-orient: vertical;
+}
+.phstat{
+    display: flex;
+}
+.phicon{
+    margin-right: 3px;
+}
+.read-count, .vote-count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.read-count{
+    margin-right: 30px;
+}
+
+.phbuton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    color: black;
+    font-weight: 800;
+    font-size: medium;
+    padding: 5px 20px;
+    width: 180px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+.phbuton.active{
+    background-color: #45c7db;
+}
+
+.profiller{
+    margin-block: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profil-resmi{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.profil{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 2px;
+    padding: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+.profil-bilgi{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profilusername{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+.profilusername:hover{
+    text-decoration: underline;
+}
+.profilbuton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid gainsboro;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: large;
+    cursor: pointer;
+}
+.profilbuton.active{
+    background-color: #45c7db;
+}
+.yazarusername{
+    color: #45c7db;
+}
+
+@media screen and (max-width: 1024px) {
+    .phkitap img{
+        height: 180px;
+        width: 112px;
+    }
+    .phsag{
+        max-height: 180px;
+    }
+    .phbaslik{
+        font-size: 16px;
+    }
+    .phyazar{
+        font-size: 15px;
+    }
+    .read-count, .vote-count{
+        font-size: 14px;
+    }
+    .kitext{
+        font-size: 13px;
+    }
+    .phkitaplar{
+        max-width: 96%;
+    }
+}
+@media screen and (max-width: 720px) {
+    .phkitap img{
+        height: 150px;
+        width: 93px;
+    }
+    .phsag{
+        max-height: 150px;
+    }
+    .phbaslik{
+        font-size: 15px;
+    }
+    .phyazar{
+        font-size: 14px;
+    }
+    .read-count, .vote-count{
+        font-size: 12px;
+    }
+    .phtext{
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .phkitap img{
+        height: 150px;
+        width: 93px;
+    }
+    .phbaslik{
+        font-size: 14px;
+    }
+    .phyazar{
+        font-size: 12px;
+    }
+    .read-count, .vote-count{
+        font-size: 12px;
+    }
+    .phtext {
+        font-size: 12px;
+        -webkit-line-clamp: 2; 
+    }
+    .phsag{
+        width: 94%;
+        max-height: 150px;
+    }
+    .phalt{
+        width: 94%;
+    }
+    .phbuton{
+        font-size: small;
+    }
+    .phwork, .phtakipci, .phusername{
+        font-size: small;
+    }
+    .phwork, .phtakipci{
+        font-size: 10px;
+    }
+    .kitaplarLink, .takipcilerLink, .takipedilenlerLink{
+        font-size: small;
+    }
+    .phustisim{
+        font-weight: bold;
+        font-size: large;
+    }
+    .profilusername, .profiller p{
+        font-size: small;
+    }
+}

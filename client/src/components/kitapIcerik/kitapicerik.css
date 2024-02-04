@@ -1,0 +1,131 @@
+.kitapicerik{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 30px;
+}
+.kitiust{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+}
+.kitistatik{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.ki-read-count{
+    margin-right: 10px;
+}
+.ki-read-count, .ki-vote-count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: medium;
+    color: #5e5e5e;
+}
+.yildizla{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 20px;
+}
+.yildizlaicon{
+    font-size: x-large;
+    color: #c7c7c7;
+    cursor: pointer;
+}
+.yildizlaiconactive{
+    font-size: x-large;
+    color: #1495a9;
+    cursor: pointer;
+}
+.kitby{
+    color: black;
+    text-decoration: none;
+}
+.kitby:hover{
+    text-decoration: underline;
+}
+.kitalt{
+    width: 50%;
+    border-top: 1px solid gainsboro;
+    padding: 20px 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px, rgba(0, 0, 0, 0.15) -1.95px -1.95px 2.6px; */
+}
+
+.btnduzenle{
+    background-color: #1495a9;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-inline: 5px;
+    width: 120px;
+}
+.btnlink{
+    color: white;
+    text-decoration: none;
+}
+.kiyukleniyor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.kiform{
+    margin-bottom: 20px;
+}
+.kiticount{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoedits{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.infoedit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-size: large;
+    margin-right: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.infotrash{
+    color: crimson;
+    font-size: large;
+    cursor: pointer;
+}
+
+.infoedit:hover{
+    color: #585858;
+}
+.infotrash:hover{
+    color: #ea4566;
+}
+
+@media screen and (max-width: 1024px){
+    .kitalt{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .kitalt p{
+        font-size: small;
+    }
+}

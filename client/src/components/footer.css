@@ -1,0 +1,58 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 150px; */
+    width: 100%;
+    z-index: 1;
+    margin-top: 50px;
+}
+
+.footer ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.fsec1, .fsec2{
+    margin-bottom: 20px;
+}
+.fsec1 li {
+    margin-inline: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: small;
+}
+.fsec2 li{
+    margin-inline: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: small;
+    font-weight: 700;
+    color: gray;
+}
+.fsec1 li a, .fsec2 li a{
+    color: black;
+    text-decoration: none;
+}
+.fsec1 li:hover, .fsec2 li:hover{
+    text-decoration: underline;
+}
+
+.none{font-weight: 500!important; cursor: default!important;}
+.none:hover{
+    text-decoration: none!important;
+}
+
+@media screen and (max-width: 450px) {
+    .fsec1 li {
+        font-size: x-small;
+        margin-inline: 5px;
+    }
+    .fsec2 li{
+        font-size: x-small;
+        margin-inline: 8px;
+    } 
+}

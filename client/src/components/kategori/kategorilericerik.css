@@ -1,0 +1,159 @@
+.kategorilericerik{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px;
+    min-height: 60vh;
+}
+.ustbilgi{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 30px;
+    width: 100%;
+}
+.kikitaplar{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    max-width: 1000px;
+    flex-wrap: wrap;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    padding: 20px 0;
+}
+.kikitap{
+    display: flex;
+    margin: 10px;
+}
+.kikitap img{
+    height: 250px;
+    width: 155px;
+    margin-right: 10px;
+}
+.kibaslik{
+    font-weight: 600;
+    font-size: 18px;
+}
+.kisag{
+    width: 300px;
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.kiistatik{
+    display: flex;
+}
+.kiicon{
+    margin-right: 3px;
+}
+.read-count, .vote-count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.read-count{
+    margin-right: 10px;
+}
+.kiform select{
+    font-size: large;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+select {
+    border: 1px solid #ccc;
+    outline: none; 
+}
+
+.kih1{
+    margin-top: 30px;
+}
+
+.kitext{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Kaç satıra kadar göstermek istediğimi burada belirttim */
+    -webkit-box-orient: vertical;
+}
+.kiyazar, .kibasliktop{
+    color: black;
+    text-decoration: none;
+}
+.kiyazar:hover, .kibasliktop:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+    .kikitap img{
+        height: 180px;
+        width: 112px;
+    }
+    .kibaslik{
+        font-size: 16px;
+    }
+    .kiyazar{
+        font-size: 15px;
+    }
+    .read-count, .vote-count{
+        font-size: 14px;
+    }
+    .kitext{
+        font-size: 13px;
+    }
+    .kisag{
+        width: 200px;
+        max-height: 180px;
+    }
+    .kikitaplar{
+        max-width: 96%;
+    }
+}
+@media screen and (max-width: 720px) {
+    .kikitap img{
+        height: 150px;
+        width: 93px;
+    }
+    .kibaslik{
+        font-size: 15px;
+    }
+    .kiyazar{
+        font-size: 14px;
+    }
+    .read-count, .vote-count{
+        font-size: 12px;
+    }
+    .kitext{
+        font-size: 11px;
+    }
+    .kisag{
+        width: 170px;
+        max-height: 150px;
+    }
+    .kiform select{
+        font-size: small;
+    }
+    .kitext{
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .kikitap img{
+        height: 145px;
+        width: 87px;
+    }
+    .kibaslik{
+        font-size: 14px;
+    }
+    .kiyazar{
+        font-size: 12px;
+    }
+    .read-count, .vote-count{
+        font-size: 12px;
+    }
+
+}

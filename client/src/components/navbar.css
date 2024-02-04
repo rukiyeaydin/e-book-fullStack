@@ -1,0 +1,114 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+    flex-wrap: nowrap;
+}
+.navbar{
+    display: flex; justify-content: space-between; align-items: center; text-align: center;
+    padding: 20px;
+    /* height: 10vh; */
+    height: 80px;
+    width: 100%;
+    z-index: 10;
+    background-color: black;
+}
+.navbar-logo{
+    font-size: larger;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+}
+.navbar-menu{
+    list-style: none;
+    display: flex; align-items: center;
+    font-size: larger;
+}
+.navbar-links{
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+    position: relative;
+    margin: 20px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar-links .navbar-title {
+    margin-left: 5px;
+  }
+.navbar-links:hover, .navbar-links.active{
+    color: 	#45c7db;
+}
+
+.acKapaMenu{
+    display: none;
+    font-size: x-large;
+    margin-right: 50px;
+    cursor: pointer;
+    color: white;
+}
+.profilresmidiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.profilresmi{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.profilli{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.yaz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pencil{
+    margin-right: 3px;
+    font-size: larger;
+}
+.logo{
+    height: 40px;
+}
+
+@media screen and (max-width : 1024px){
+    .navbar-menu{
+        display: none;
+    }
+    .navbar-menu.active{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        right: 0;
+        top: calc(80px - 2px);
+        width: 100%;
+        background-color: black;
+        border-bottom: 1px solid white;
+        z-index: 2;
+    }
+    .profilresmi{
+        margin: 0;
+    }
+    .navbar-links{
+        color: white;
+        animation: nav 2s;
+    }
+    .acKapaMenu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .navbar-links{
+        font-size: 14px;
+    }
+}

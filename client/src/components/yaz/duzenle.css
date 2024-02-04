@@ -1,0 +1,33 @@
+.duzenleform{
+    margin: 10px 0px 20px 0px;
+}
+.duzenleform select{
+    padding: 3px;
+    border-radius: 5px;
+}
+.yazicerikbtns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.yazicerikbtnkaydet{
+    border: none;
+    background-color: #1495a9;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    margin-inline: 10px;
+    width: 100px;
+}
+
+.yazicerikbtnsil{
+    border: none;
+    background-color: crimson;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    margin-inline: 10px;
+    width: 100px;
+}

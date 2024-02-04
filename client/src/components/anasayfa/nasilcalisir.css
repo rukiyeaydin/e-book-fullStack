@@ -1,0 +1,62 @@
+.nasilcalisir{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-block: 30px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+}
+.nasilcalisirfirst{
+    font-weight: 700;
+    font-size: 30px;
+}
+.adimlar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+.adim{
+    display: flex;
+    width: 350px;
+    margin: 10px;
+    border-bottom: 5px solid #45c7db;
+    padding: 5px;
+    border-radius: 40px;
+}
+.adimp{
+    font-size: 100px;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+.adimsag{
+    display: flex;
+    flex-direction: column;
+}
+.adimsagp{
+    font-weight: 700;
+    font-size: larger;
+}
+
+@media screen and (max-width: 1250px) {
+    .adimlar{display: flex; flex-direction: column;}
+    .adimp{font-size: 80px;}
+    .adim{width: 70%; margin-block: 20px;}  
+}
+@media screen and (max-width: 650px) {
+    /* .nasilcalisir{display: none;} */
+
+    .adim{width: 98%;}
+    .adimsagp{font-size: 16px;}
+    .adimp{font-size: 60px;}
+    .nasilcalisirfirst{font-size: 20px;}
+    .adimsagptwo{font-size: 14px;}
+}
+@media screen and (max-width: 400px) {
+    .adimp{font-size: 45px;}
+    .adimsagp{font-size: 15px;}
+    .adimsagptwo{font-size: 12px;}
+}

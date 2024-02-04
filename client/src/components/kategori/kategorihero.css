@@ -1,0 +1,66 @@
+.kategoriicerikall{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 30px;
+    width: 100%;
+}
+
+.kategorilertrio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.kategorilnk{
+    width: 290px;
+    height: 90px;    
+    color: white;
+    font-size: medium;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 0 5px 10px 5px;
+}
+
+#aksiyon{
+    background: linear-gradient(to right, #f72c44, #7b1c12);
+}
+#ask{
+    background: linear-gradient(to left, #ec008c, #fc6767);
+}
+#bilimkurgu{
+    background: linear-gradient(to left, #11998e, #38ef7d);
+}
+#fantastik{
+    background: linear-gradient(to left, #808080, #3fada8);
+}
+#korku{
+    background: linear-gradient(to left, #000000, #434343);
+}
+#macera{
+    background: linear-gradient(to left, #c02425, #f0cb35);
+}
+#mizah{
+    background: linear-gradient(to left, #cac531, #f3f9a7); 
+}
+#tarih{
+    background-image: linear-gradient(to left, #4d3319, #ad7843);
+}
+#siir{
+    background: linear-gradient(to left, #a770ef, #cf8bf3, #fdb99b);
+}
+
+@media screen and (max-width: 500px) {
+    .kategorilertrio{
+        flex-direction: column;
+    }
+    .kategorilnk{
+        width: 96%;
+        height: 60px;
+    }
+}
