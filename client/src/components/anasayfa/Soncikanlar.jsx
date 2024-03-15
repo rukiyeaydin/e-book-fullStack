@@ -29,7 +29,7 @@ const Soncikanlar = () => {
     
     },[])
 
-    if (data.length === 0 ) {
+    if (!data || data.length === 0 ) {
         return (
         <div className='homepage'>
             <div className="encokokunanlar">

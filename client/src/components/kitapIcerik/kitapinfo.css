@@ -54,6 +54,76 @@
     margin-right: 10px;
 }
 
+.add-comment{
+    display: flex;
+    width: 100%;
+    margin-block: 20px;
+}
+
+.add-comment-iptal{
+    border: none;
+    padding: 0 5px;
+    margin-inline: 8px;
+    cursor: pointer;
+    background-color: crimson;
+    color: white;
+}
+
+.add-comment-ekle{
+    border: none;
+    padding: 0 5px;
+    cursor: pointer;
+    background-color: #1cb1c8;
+    color: white;
+}
+
+.add-comment-input{
+    width: 100%;
+    padding: 5px 0px;
+    border: none;
+    border-bottom: 1px solid gainsboro;
+}
+
+.add-comment-input:focus{
+    outline: none;
+    border-bottom: 1px solid #a1a1a1;
+}
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.single-comment{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-block: 10px;
+    margin-block: 10px;
+    width: 100%;
+}
+
+.comment-profil-img{
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.comment-content{
+    width: 400px;
+}
+
 @media screen and (max-width: 800px) {
     .kitapinfoinc{
         flex-direction: column;
@@ -68,5 +138,8 @@
     }
     .kitapinfoshortdesc{
         width: auto;
+    }
+    .comment-content{
+        width: 100%;
     }
 }

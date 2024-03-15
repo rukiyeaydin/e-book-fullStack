@@ -7,12 +7,18 @@ import Yukleniyorc from '../Yukleniyorc'
 import { MdLibraryAdd } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import profilbg from "../../images/profilbg.jpg"
 
 const Kitapinfo = () => {
   const [data, setData] = useState([])
   const { state, dispatch } = useContext(UserContext)
   const { id } = useParams(); // ID'yi al
   const navigate = useNavigate();
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
 
   useEffect(() => {
       fetch("http://localhost:5000/allbooks", {
@@ -97,6 +103,43 @@ const Kitapinfo = () => {
                    
                   </div>
                 : "" }
+
+                <div className="comments" style={{marginTop:"30px"}}>
+                  <p style={{fontWeight:"bolder", fontSize:"18px", borderBottom:"1px solid black", paddingBottom:"5px", width:"100%"}}>178 Yorum</p>
+
+                  <div className="add-comment">
+                    <input type="text" placeholder='Yorum Ekleyin...' className='add-comment-input' onFocus={handleFocus}/>
+                    {isFocused && (
+                      <>
+                        <button className="add-comment-iptal" onClick={() => setIsFocused(false)}>İptal</button>
+                        <button className="add-comment-ekle">Ekle</button>
+                      </>
+                    )}
+                  </div>
+
+                  <div className="single-comment">
+                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
+                    <div className="comment">
+                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
+                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia officia facilis consectetur asperiores vero, nostrum iusto accusamus et! Nam, temporibus!</p>
+                    </div>
+                  </div>
+                  <div className="single-comment">
+                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
+                    <div className="comment">
+                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
+                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam eveniet facilis ullam ratione omnis magni, quae quaerat eos, totam esse laboriosam rerum! Asperiores voluptatum, eaque in illo voluptate sit reprehenderit, ipsam error similique necessitatibus iusto laborum quibusdam eveniet ab veritatis.</p>
+                    </div>
+                  </div>
+                  <div className="single-comment">
+                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
+                    <div className="comment">
+                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
+                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem labore dolor quos atque autem pariatur. Voluptate, expedita beatae.</p>
+                    </div>
+                  </div>
+
+                </div>
 
             </div>
         </div>

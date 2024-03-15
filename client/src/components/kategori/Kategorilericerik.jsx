@@ -42,7 +42,7 @@ const Kategorilericerik = () => {
   
   // console.log(kitaplar)
 
-  if (kitaplar.length === 0 ) {
+  if (!kitaplar || kitaplar.length === 0 ) {
     return (
       <div style={{height:"80vh", display:"flex", alignItems:"center", justifyContent:"center"}}>
         <Yukleniyorc />

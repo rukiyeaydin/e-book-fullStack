@@ -27,13 +27,13 @@ const Profilhero = () => {
   },[])
 
   useEffect(() => {
-    if (data.length > 0 && state && state.username) {
-      const userBooks = data.filter(item => item.author.username === username)
+    if (data && data.length > 0 && state && state.username) {
+      const userBooks = data.filter(item => item.author.username === username);
       if (userBooks.length > 0) {
         setMyBooks(userBooks);
       }
     }
-  }, [data, state]);
+  }, [data, state, username]);
 
   // console.log(myBooks)
   // const followers = myBooks.length > 0 ? myBooks[0].author.followers.length : 0;
