@@ -12,6 +12,31 @@ const pageSchema = new mongoose.Schema({
     }
 });
 
+const commentSchema = new mongoose.Schema({
+    user: {
+        _id: {
+            type: ObjectId,
+            ref: "User",
+            required: true
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        profilResmi: {
+            type: String
+        }
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,
@@ -42,6 +67,7 @@ const bookSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
+    comments: [commentSchema]
 })
 
 mongoose.model("Book", bookSchema)

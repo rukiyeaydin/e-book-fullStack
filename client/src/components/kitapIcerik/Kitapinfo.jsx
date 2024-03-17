@@ -15,6 +15,7 @@ const Kitapinfo = () => {
   const { id } = useParams(); // ID'yi al
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
+  const [newcomment, setNewComment] = useState("")
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -56,6 +57,67 @@ const Kitapinfo = () => {
       });
     }
   };
+
+
+  const handleAddCommentClick = async () => {
+    if (id && newcomment) {
+      try {
+          const userResponse = await fetch(`http://localhost:5000/user`, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  "Authorization": 'Bearer ' + localStorage.getItem('jwt'),
+              },
+          });
+          const userData = await userResponse.json();
+          // console.log(userData);
+          
+          const commentObject = {
+              content: newcomment,
+              user: {
+                username: userData.username,
+                profilResmi: userData.profilResmi,
+                _id: userData._id
+              } 
+          };
+
+          const response = await fetch(`http://localhost:5000/commentBook/${id}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+                  "Authorization": 'Bearer ' + localStorage.getItem('jwt'),
+              },
+              body: JSON.stringify({ comment: commentObject }),
+          });
+
+          const result = await response.json();
+
+          setNewComment("")
+          fetchBookData();
+          setIsFocused(false)
+
+          // console.log("Kitap güncellendi");
+          // console.log('Güncellenen kitap: ', result);
+
+        } catch (error) {
+            console.error('Hata:', error);
+        }
+      }
+
+    };
+    const fetchBookData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/allbooks`, {
+          headers: {
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+          }
+        });
+        const result = await response.json();
+        setData(result.books);
+      } catch (error) {
+        console.error('Hata:', error);
+      }
+    };
 
 
   if (!kitap) {
@@ -105,39 +167,35 @@ const Kitapinfo = () => {
                 : "" }
 
                 <div className="comments" style={{marginTop:"30px"}}>
-                  <p style={{fontWeight:"bolder", fontSize:"18px", borderBottom:"1px solid black", paddingBottom:"5px", width:"100%"}}>178 Yorum</p>
+                  <p style={{fontWeight:"bolder", fontSize:"18px", borderBottom:"1px solid black", paddingBottom:"5px", width:"100%"}}>{kitap.comments.length} Yorum</p>
 
                   <div className="add-comment">
-                    <input type="text" placeholder='Yorum Ekleyin...' className='add-comment-input' onFocus={handleFocus}/>
+                    <input 
+                      type="text" 
+                      placeholder='Yorum Ekleyin...' 
+                      className='add-comment-input' 
+                      onFocus={handleFocus}
+                      value={newcomment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
                     {isFocused && (
                       <>
                         <button className="add-comment-iptal" onClick={() => setIsFocused(false)}>İptal</button>
-                        <button className="add-comment-ekle">Ekle</button>
+                        <button className="add-comment-ekle" onClick={handleAddCommentClick}>Ekle</button>
                       </>
                     )}
                   </div>
-
-                  <div className="single-comment">
-                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
-                    <div className="comment">
-                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
-                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia officia facilis consectetur asperiores vero, nostrum iusto accusamus et! Nam, temporibus!</p>
-                    </div>
-                  </div>
-                  <div className="single-comment">
-                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
-                    <div className="comment">
-                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
-                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam eveniet facilis ullam ratione omnis magni, quae quaerat eos, totam esse laboriosam rerum! Asperiores voluptatum, eaque in illo voluptate sit reprehenderit, ipsam error similique necessitatibus iusto laborum quibusdam eveniet ab veritatis.</p>
-                    </div>
-                  </div>
-                  <div className="single-comment">
-                    <Link><img src={profilbg} alt="profile" className='comment-profil-img' /></Link>
-                    <div className="comment">
-                      <Link style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>rukiyeaydin</Link>
-                      <p style={{fontSize:"14px"}} className='comment-content'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem labore dolor quos atque autem pariatur. Voluptate, expedita beatae.</p>
-                    </div>
-                  </div>
+                  {kitap.comments.map(item => {
+                    return(
+                      <div className="single-comment" key={item._id}>
+                        <Link to={`/profil/${item.user.username}`}><img src={item.user.profilResmi} alt="profile" className='comment-profil-img'/></Link>
+                        <div className="comment">
+                        <Link to={`/profil/${item.user.username}`} style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>{item.user.username}</Link>
+                          <p style={{fontSize:"14px"}} className='comment-content'>{item.content}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
 
                 </div>
 

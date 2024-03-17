@@ -3,6 +3,8 @@ const requireLogin = require("../middleware/requireLogin")
 const router = express.Router()
 const mongoose = require("mongoose")
 const Book = mongoose.model("Book")
+const User = mongoose.model("User")
+
 
 router.get('/allbooks', requireLogin, (req, res) => {
     Book.find()
@@ -222,6 +224,48 @@ router.post('/search-books', (req,res) => {
         console.log(err);
     })
 })
+
+
+router.put('/commentBook/:id', requireLogin, async (req, res) => {
+    const { id } = req.params;
+    const { comment } = req.body;
+
+    const updatedComment = {
+        ...comment,
+        user: {
+            username: req.user.username,
+            profilResmi: req.user.profilResmi,
+            _id: req.user._id
+        }
+    };
+
+    try {
+        const updatedBook = await Book.findByIdAndUpdate(
+            id,
+            { $push: { comments: updatedComment } },
+            { new: true }
+        );
+
+        if (!updatedBook) {
+            return res.status(404).json({ error: "Kitap bulunamadı" });
+        }
+
+        res.json({ book: updatedBook });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Sunucu hatası, kitap güncellenemedi" });
+    }
+});
+
+router.get('/user', requireLogin, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).select('-password');
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Sunucu hatası, kullanıcı bilgileri alınamadı" });
+    }
+});
 
 
 module.exports = router
