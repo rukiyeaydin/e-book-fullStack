@@ -7,7 +7,7 @@ import Yukleniyorc from '../Yukleniyorc'
 import { MdLibraryAdd } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
-import profilbg from "../../images/profilbg.jpg"
+import { MdSort } from "react-icons/md";
 
 const Kitapinfo = () => {
   const [data, setData] = useState([])
@@ -16,6 +16,7 @@ const Kitapinfo = () => {
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
   const [newcomment, setNewComment] = useState("")
+  const [sort, setSort] = useState("En eski")
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -58,6 +59,19 @@ const Kitapinfo = () => {
     }
   };
 
+  const fetchBookData = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/allbooks`, {
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+      });
+      const result = await response.json();
+      setData(result.books);
+    } catch (error) {
+      console.error('Hata:', error);
+    }
+  };
 
   const handleAddCommentClick = async () => {
     if (id && newcomment) {
@@ -92,9 +106,9 @@ const Kitapinfo = () => {
 
           const result = await response.json();
 
-          setNewComment("")
           fetchBookData();
           setIsFocused(false)
+          setNewComment("")
 
           // console.log("Kitap güncellendi");
           // console.log('Güncellenen kitap: ', result);
@@ -104,20 +118,44 @@ const Kitapinfo = () => {
         }
       }
 
-    };
-    const fetchBookData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/allbooks`, {
-          headers: {
-            "Authorization": "Bearer " + localStorage.getItem("jwt")
-          }
+  };
+
+  const handleDeleteComment = (commentId) => {
+    const confirmDelete = window.confirm('Bu yorumu silmek istediğinize emin misiniz?');
+
+    if (confirmDelete) {
+        fetch(`http://localhost:5000/deleteComment/${id}/${commentId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+            },
+        })
+        .then((res) => res.json())
+        .then((result) => {
+            // console.log(result);
+            fetchBookData();
+        })
+        .catch((error) => {
+            console.error(error);
         });
-        const result = await response.json();
-        setData(result.books);
-      } catch (error) {
-        console.error('Hata:', error);
-      }
-    };
+    }
+  };
+
+  useEffect(() => {
+    const allComments = kitap && kitap.comments ? [...kitap.comments] : [];
+    
+    if (sort === 'enEski') {
+      allComments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    } else if (sort === 'enYeni') {
+      allComments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+  
+    setData(prevData => {
+      const updatedKitap = { ...kitap, comments: allComments };
+      return prevData.map(item => (item._id === id ? updatedKitap : item));
+    });
+    
+  }, [kitap, sort]);
 
 
   if (!kitap) {
@@ -185,14 +223,32 @@ const Kitapinfo = () => {
                       </>
                     )}
                   </div>
+                  <form className='comments-form'>
+                    <MdSort className='comments-sort-icon' />
+                    <select 
+                    className='comments-select' 
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
+                    >
+                      <option value="enEski">En eski</option>
+                      <option value="enYeni">En yeni</option>
+                    </select>
+                  </form>
+
                   {kitap.comments.map(item => {
                     return(
                       <div className="single-comment" key={item._id}>
                         <Link to={`/profil/${item.user.username}`}><img src={item.user.profilResmi} alt="profile" className='comment-profil-img'/></Link>
                         <div className="comment">
-                        <Link to={`/profil/${item.user.username}`} style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>{item.user.username}</Link>
+                          <Link to={`/profil/${item.user.username}`} style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>{item.user.username}</Link>
                           <p style={{fontSize:"14px"}} className='comment-content'>{item.content}</p>
                         </div>
+                        {item.user.username==state.username ? 
+                          <button className='comment-trash' onClick={() => handleDeleteComment(item._id)}><FaTrash /></button> 
+                          : 
+                          ""
+                        }
+                        
                       </div>
                     )
                   })}

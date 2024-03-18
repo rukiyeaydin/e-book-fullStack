@@ -257,6 +257,28 @@ router.put('/commentBook/:id', requireLogin, async (req, res) => {
     }
 });
 
+router.delete('/deleteComment/:bookId/:commentId', requireLogin, async (req, res) => {
+    const { bookId, commentId } = req.params;
+    
+    try {
+        const updatedBook = await Book.findByIdAndUpdate(
+            bookId,
+            { $pull: { comments: { _id: commentId } } },
+            { new: true }
+        );
+
+        if (!updatedBook) {
+            return res.status(404).json({ error: "Kitap bulunamadı" });
+        }
+
+        res.json({ book: updatedBook });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Sunucu hatası, yorum silinemedi" });
+    }
+});
+
+
 router.get('/user', requireLogin, async (req, res) => {
     try {
         const user = await User.findById(req.user._id).select('-password');
