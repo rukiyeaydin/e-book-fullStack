@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { AiFillEye, AiFillStar } from 'react-icons/ai'
 import { UserContext } from "../../App"
 import Yukleniyorc from '../Yukleniyorc'
+import { IoArrowForwardSharp, IoArrowBackOutline  } from "react-icons/io5";
 
 
 const Kitapicerik = () => {
@@ -99,6 +100,20 @@ const Kitapicerik = () => {
       setPage(data.find((item) => item._id === id)?.pages[0]?.pageTitle || '');
     }
   }, [data, id]);
+  
+  const handlePreviousPage = () => {
+    const currentIndex = kitap.pages.findIndex(sayfa => sayfa.pageTitle === page);
+    if (currentIndex > 0) {
+      setPage(kitap.pages[currentIndex - 1].pageTitle);
+    }
+  };
+  
+  const handleNextPage = () => {
+    const currentIndex = kitap.pages.findIndex(sayfa => sayfa.pageTitle === page);
+    if (currentIndex !== -1 && currentIndex < kitap.pages.length - 1) {
+      setPage(kitap.pages[currentIndex + 1].pageTitle);
+    }
+  };
 
   return (
     <>
@@ -136,6 +151,19 @@ const Kitapicerik = () => {
         <div className="kitalt">
           {/* <p>{<div dangerouslySetInnerHTML={{ __html: kitap.content }} />}</p> */}
           <p dangerouslySetInnerHTML={{ __html: page && kitap.pages.find((sayfa) => sayfa.pageTitle === page)?.content }} />
+          <div style={{width:"100%" ,display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:"30px"}}>
+            <IoArrowBackOutline 
+            style={{opacity: kitap.pages.findIndex(sayfa => sayfa.pageTitle === page) === 0 ? 0 : 1, zIndex: kitap.pages.findIndex(sayfa => sayfa.pageTitle === page) === 0 ? -10 : 1}} 
+            onClick={handlePreviousPage} 
+            className='kitalt-cbutton' 
+            />
+            <IoArrowForwardSharp 
+            style={{ opacity: kitap.pages.findIndex(sayfa => sayfa.pageTitle === page) === kitap.pages.length - 1 ? 0 : 1, zIndex: kitap.pages.findIndex(sayfa => sayfa.pageTitle === page) === kitap.pages.length - 1 ? -10 : 1}} 
+            onClick={handleNextPage} 
+            className='kitalt-cbutton'
+            />
+          </div>
+
         </div>
         {state.username === kitap.author.username ?        
           <button className='btnduzenle'><Link to={kitap ? `/duzenle/${kitap._id}` : "yükleniyor"} className='btnlink'>Düzenle</Link></button> :

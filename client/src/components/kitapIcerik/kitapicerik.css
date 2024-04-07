@@ -57,6 +57,19 @@
     padding: 20px 10px;
     /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px, rgba(0, 0, 0, 0.15) -1.95px -1.95px 2.6px; */
 }
+.kitalt-cbutton{
+    cursor: pointer;
+    font-size: x-large;
+    color: #1495a9;
+    border: 1px solid #1495a9;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.kitalt-cbutton:hover{
+    background-color: #1495a9;
+    color: white;
+}
 
 .btnduzenle{
     background-color: #1495a9;
