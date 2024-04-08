@@ -62,8 +62,8 @@ router.post('/login', (req, res) => {
             if(doMatch){
                 // res.json({message: "başarıyla giriş yapıldı"})
                 const token = jwt.sign({ _id: savedUser._id}, JWT_SECRET)
-                const {_id, name, email, username, password, profilResmi, followers, following} = savedUser
-                res.json({token: token, user: {_id, name, username, email, password, profilResmi, followers, following}})
+                const {_id, name, email, username, password, profilResmi, followers, following, booksRead} = savedUser
+                res.json({token: token, user: {_id, name, username, email, password, profilResmi, followers, following, booksRead}})
             } 
             else{
                 return res.status(422).json({error: "geçersiz email ya da parola"})

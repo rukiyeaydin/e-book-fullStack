@@ -17,7 +17,8 @@ export const reducer = (state, action) => {
         return{
             ...state,
             username: action.payload.username,
-            email: action.payload.email
+            email: action.payload.email,
+            booksRead: action.payload.booksRead
         }
     }
     if(action.type == "UPDATE"){

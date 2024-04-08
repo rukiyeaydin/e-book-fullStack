@@ -80,26 +80,79 @@ router.put('/follow', requireLogin, (req, res) => {
 
 
 router.put('/unfollow', requireLogin, (req, res) => {
-    User.findByIdAndUpdate(
-      req.body.unfollowId,
-      { $pull: { followers: req.user._id } },
+  User.findByIdAndUpdate(
+    req.body.unfollowId,
+    { $pull: { followers: req.user._id } },
+    { new: true }
+  )
+  .then(updatedFollower => {
+    return User.findByIdAndUpdate(
+      req.user._id,
+      { $pull: { following: req.body.unfollowId } },
       { new: true }
-    )
-    .then(updatedFollower => {
-      return User.findByIdAndUpdate(
-        req.user._id,
-        { $pull: { following: req.body.unfollowId } },
-        { new: true }
-      ).select("-password");
-    })
-    .then(updatedFollowing => {
-      res.json(updatedFollowing);
-    })
-    .catch(err => {
-      res.status(422).json({ error: err.message });
-    });
+    ).select("-password");
+  })
+  .then(updatedFollowing => {
+    res.json(updatedFollowing);
+  })
+  .catch(err => {
+    res.status(422).json({ error: err.message });
   });
+});
 
+router.put('/addToBooksRead/:bookId', requireLogin, async (req, res) => {
+  const { bookId } = req.params;
+  const { _id } = req.user;
 
+  try {
+    const user = await User.findById(_id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
+    }
+
+    const bookIndex = user.booksRead.findIndex(item => item.book.toString() === bookId);
+
+    if (bookIndex === -1) {
+      user.booksRead.push({ book: bookId, progress: 0 });
+      await user.save();
+      res.status(200).json({ message: 'Kitap başarıyla okundu olarak işaretlendi.' });
+    } else {
+      res.status(400).json({ error: 'Bu kitap zaten okunmuş.' });
+    }
+
+  } catch (error) {
+    console.error('Hata:', error);
+    res.status(500).json({ error: 'Sunucu hatası. Kitap okunurken bir hata oluştu.' });
+  }
+});
+
+router.put('/updateProgress/:bookId', requireLogin, async (req, res) => {
+  const { bookId } = req.params;
+  const { progress } = req.body;
+  const { _id } = req.user;
+
+  try {
+    const user = await User.findById(_id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
+    }
+
+    const bookIndex = user.booksRead.findIndex(item => item.book.toString() === bookId);
+
+    if (bookIndex === -1) {
+      return res.status(404).json({ error: 'Kullanıcı bu kitabı okumamış.' });
+    }
+
+    user.booksRead[bookIndex].progress += progress;
+    await user.save();
+
+    res.status(200).json({ message: 'İlerleme başarıyla güncellendi.' });
+  } catch (error) {
+    console.error('Hata:', error);
+    res.status(500).json({ error: 'Sunucu hatası. İlerleme güncellenirken bir hata oluştu.' });
+  }
+});
 
 module.exports = router

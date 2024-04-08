@@ -84,7 +84,7 @@ const Kitapinfo = () => {
               },
           });
           const userData = await userResponse.json();
-          // console.log(userData);
+          console.log(userData);
           
           const commentObject = {
               content: newcomment,
@@ -141,22 +141,39 @@ const Kitapinfo = () => {
     }
   };
 
-  useEffect(() => {
-    const allComments = kitap && kitap.comments ? [...kitap.comments] : [];
-    
-    if (sort === 'enEski') {
-      allComments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-    } else if (sort === 'enYeni') {
-      allComments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortComments = (comments) => {
+    if (sort === "enEski") {
+      return comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    } else if (sort === "enYeni") {
+      return comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
-  
-    setData(prevData => {
-      const updatedKitap = { ...kitap, comments: allComments };
-      return prevData.map(item => (item._id === id ? updatedKitap : item));
-    });
-    
-  }, [kitap, sort]);
+    return comments;
+  };
 
+  const handleAddToBooksRead = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/addToBooksRead/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": 'Bearer ' + localStorage.getItem('jwt'),
+        },
+      });
+  
+      const result = await response.json();
+      // console.log("Kullanıcı kitabı okudu olarak işaretlendi:", result);
+  
+      const updatedBooksRead = [...state.booksRead, { book: id, progress: 0 }];
+      const updatedUser = { ...state, booksRead: updatedBooksRead };
+      const updatedUserForLocalStorage = { ...state, booksRead: updatedBooksRead }; 
+      // console.log(updatedUserForLocalStorage); 
+      localStorage.setItem('user', JSON.stringify(updatedUserForLocalStorage));
+      dispatch({ type: "USER", payload: updatedUser });
+  
+    } catch (error) {
+      console.error('Hata:', error);
+    }
+  };
 
   if (!kitap) {
     return (
@@ -185,7 +202,12 @@ const Kitapinfo = () => {
                     <AiFillStar/>{kitap ? kitap.likes.length : ""}
                   </span>
                 </div>
-                <button className='kitapinfobuton'><Link target='_top'to={`/kitap/${id}`}  className='kitapinfolink'>Okumaya Başla</Link></button>
+                <button className='kitapinfobuton' onClick={() => {
+                    handleAddToBooksRead();
+                    navigate(`/kitap/${id}`);
+                }}>
+                  Oku
+                </button>
                 {kitap.author._id == state._id ? 
                   <div className="infoedits">
                     <Link className='infoedit' to={kitap ? `/duzenle-genel/${kitap._id}` : "yükleniyor"}>
@@ -234,8 +256,7 @@ const Kitapinfo = () => {
                       <option value="enYeni">En yeni</option>
                     </select>
                   </form>
-
-                  {kitap.comments.map(item => {
+                  {sortComments(kitap.comments).map(item => {
                     return(
                       <div className="single-comment" key={item._id}>
                         <Link to={`/profil/${item.user.username}`}><img src={item.user.profilResmi} alt="profile" className='comment-profil-img'/></Link>
@@ -243,12 +264,11 @@ const Kitapinfo = () => {
                           <Link to={`/profil/${item.user.username}`} style={{fontWeight:"bold", fontSize:"15px", textDecoration:"none", color:"black"}}>{item.user.username}</Link>
                           <p style={{fontSize:"14px"}} className='comment-content'>{item.content}</p>
                         </div>
-                        {item.user.username==state.username ? 
+                        {item.user.username===state.username ? 
                           <button className='comment-trash' onClick={() => handleDeleteComment(item._id)}><FaTrash /></button> 
                           : 
                           ""
                         }
-                        
                       </div>
                     )
                   })}

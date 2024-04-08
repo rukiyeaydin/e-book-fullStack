@@ -30,6 +30,16 @@ const UserSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "User"
   }],
+  booksRead: [{
+    book: {
+      type: ObjectId,
+      ref: "Book"
+    },
+    progress: {
+      type: Number,
+      default: 0
+    }
+  }]
 });
 
 mongoose.model("User", UserSchema)

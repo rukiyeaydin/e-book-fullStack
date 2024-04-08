@@ -29,6 +29,9 @@
     border-radius: 5px;
     margin-block: 30px;
     background-color: #1cb1c8;
+    color: white;
+    width: 100px;
+    cursor: pointer;
 }
 .kitapinfolink{
     text-decoration: none;

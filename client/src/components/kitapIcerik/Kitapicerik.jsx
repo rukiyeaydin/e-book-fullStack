@@ -97,14 +97,19 @@ const Kitapicerik = () => {
 
   useEffect(() => {
     if (data.length > 0) {
-      setPage(data.find((item) => item._id === id)?.pages[0]?.pageTitle || '');
+      if (kitap) {
+        const bookProgress = state.booksRead.find(item => item.book === id)?.progress || 0;
+        setPage(kitap.pages[bookProgress]?.pageTitle || '');
+      }
     }
-  }, [data, id]);
+  }, [data, id, state && state.booksRead]);
   
   const handlePreviousPage = () => {
     const currentIndex = kitap.pages.findIndex(sayfa => sayfa.pageTitle === page);
     if (currentIndex > 0) {
       setPage(kitap.pages[currentIndex - 1].pageTitle);
+      updateProgress(-1);
+      updateLocalStorage(-1);
     }
   };
   
@@ -112,8 +117,39 @@ const Kitapicerik = () => {
     const currentIndex = kitap.pages.findIndex(sayfa => sayfa.pageTitle === page);
     if (currentIndex !== -1 && currentIndex < kitap.pages.length - 1) {
       setPage(kitap.pages[currentIndex + 1].pageTitle);
+      updateProgress(1);
+      updateLocalStorage(1);
     }
   };
+
+  const updateProgress = (progress) => {
+    fetch(`http://localhost:5000/updateProgress/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": 'Bearer ' + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({ progress: progress }),
+    })
+    .then(result => {
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  };
+
+  const updateLocalStorage = (progress) => {
+    if (state && state.booksRead) {
+      const bookIndex = state.booksRead.findIndex(item => item.book === id);
+      if (bookIndex !== -1) {
+        const updatedBooksRead = [...state.booksRead];
+        updatedBooksRead[bookIndex].progress += progress; // İlerlemeyi güncelle
+        localStorage.setItem('user', JSON.stringify({ ...state, booksRead: updatedBooksRead }));
+      }
+    }
+  };
+
 
   return (
     <>
