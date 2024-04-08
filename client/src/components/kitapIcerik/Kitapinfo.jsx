@@ -245,17 +245,20 @@ const Kitapinfo = () => {
                       </>
                     )}
                   </div>
-                  <form className='comments-form'>
-                    <MdSort className='comments-sort-icon' />
-                    <select 
-                    className='comments-select' 
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                    >
-                      <option value="enEski">En eski</option>
-                      <option value="enYeni">En yeni</option>
-                    </select>
-                  </form>
+                  {kitap.comments.length > 0 ?
+                    <form className='comments-form'>
+                      <MdSort className='comments-sort-icon' />
+                      <select 
+                      className='comments-select' 
+                      value={sort}
+                      onChange={(e) => setSort(e.target.value)}
+                      >
+                        <option value="enEski">En eski</option>
+                        <option value="enYeni">En yeni</option>
+                      </select>
+                    </form>
+                  : ""}
+
                   {sortComments(kitap.comments).map(item => {
                     return(
                       <div className="single-comment" key={item._id}>
