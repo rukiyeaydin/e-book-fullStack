@@ -13,7 +13,6 @@ const Kitapicerik = () => {
   const { state, dispatch } = useContext(UserContext)
   const { id } = useParams(); // ID'yi al
 
-
   useEffect(() => {
     fetch("http://localhost:5000/allbooks", {
       headers:{
@@ -175,13 +174,7 @@ const Kitapicerik = () => {
               <AiFillStar className= "yildizlaicon" onClick={() => {likeBook(kitap._id)}} />
               }
             </div>
-            <form className='kiform'>
-              <select value={page} onChange={(e) => setPage(e.target.value)}>
-                {kitap.pages.map((sayfa,index) => (
-                  <option key={index} value={sayfa.pageTitle}>{sayfa.pageTitle}</option>
-                ))}
-              </select>
-            </form>
+            <p className='kipageheader'>{page}</p>
           </div>
         </div>
         <div className="kitalt">
